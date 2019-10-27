@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace App\Http\Home;
 
-use function dd;
+use Psr\Http\Message\ResponseInterface;
 
 class GetHomeAction
 {
-    public function __invoke() : void
+    /** @var GetHomeResponder */
+    private $responder;
+
+    public function __construct(GetHomeResponder $responder)
     {
-        // TODO: Implement Home Page
-        dd('Implement Home Page');
+        $this->responder = $responder;
+    }
+
+    public function __invoke() : ResponseInterface
+    {
+        return ($this->responder)();
     }
 }

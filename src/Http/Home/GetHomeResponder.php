@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Error;
+namespace App\Http\Home;
 
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class Error404Responder
+class GetHomeResponder
 {
     /** @var ResponseFactoryInterface */
     private $responseFactory;
@@ -19,10 +19,10 @@ class Error404Responder
 
     public function __invoke() : ResponseInterface
     {
-        // TODO: Implement 404 page
-        $response = $this->responseFactory->createResponse(404, 'Page Not Found');
+        // TODO: Implement Home Page
+        $response = $this->responseFactory->createResponse();
 
-        $response->getBody()->write('Page not found');
+        $response->getBody()->write('TODO: Implement Home Page');
 
         return $response;
     }

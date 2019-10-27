@@ -19,6 +19,7 @@ class Error500Responder
 
     public function __invoke() : ResponseInterface
     {
+        // TODO: Implement 500 page
         $response = $this->responseFactory->createResponse(500, 'An internal server error occurred');
 
         $response->getBody()->write('An internal server error occurred');
