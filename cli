@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Psr\Container\ContainerInterface;
+use Symfony\Component\Console\Application;
+use Whoops\Run as WhoopsRun;
+
+$bootstrap = require __DIR__ . '/config/bootstrap.php';
+
+/** @var ContainerInterface $container */
+$container = $bootstrap();
+
+$app = $container->get(Application::class);
+
+// Use Whoops to catch the exception
+if (class_exists(WhoopsRun::class) && true) {
+    $app->setCatchExceptions(false);
+}
+
+$directory = new RecursiveDirectoryIterator(__DIR__ . '/src/Cli');
+$iterator = new RecursiveIteratorIterator($directory);
+$finalIterator = new RegexIterator(
+    $iterator,
+    '/^.+\.php$/i',
+    RecursiveRegexIterator::GET_MATCH
+);
+
+foreach ($finalIterator as $files) {
+    foreach ($files as $file) {
+        $command = $container->get('\App\Cli\\' . basename($file, '.php'));
+        $app->add($command);
+    }
+}
+
+/** @noinspection PhpUnhandledExceptionInspection */
+$app->run();

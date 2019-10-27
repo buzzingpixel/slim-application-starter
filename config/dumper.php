@@ -30,7 +30,7 @@ $varStore->hasDumped = false;
 
 VarDumper::setHandler(static function ($var) use ($cloner, $dumper, $twigDumper, $varStore) : void {
     if (PHP_SAPI !== 'cli' && ! $varStore->hasDumped) {
-        print '<head><title>Symfony Dumper</title></head><body>';
+        echo '<head><title>Symfony Dumper</title></head><body>';
         $varStore->hasDumped = true;
     }
 
@@ -62,22 +62,25 @@ VarDumper::setHandler(static function ($var) use ($cloner, $dumper, $twigDumper,
     $traceItem = debug_backtrace()[2];
 
     if (PHP_SAPI !== 'cli') {
-        print '<pre style="margin-bottom: -16px;">';
+        echo '<pre style="margin-bottom: -16px;">';
     }
 
-    print $traceItem['file'] . ':' . $traceItem['line'] . ': ';
+    echo $traceItem['file'] . ':' . $traceItem['line'] . ': ';
 
     if (PHP_SAPI !== 'cli') {
-        print '</pre>';
+        echo '</pre>';
+        echo '<pre style="font-size: 14px; margin-bottom: -16px; margin-left: 6px;">';
     }
 
-    echo '<pre style="font-size: 14px; margin-bottom: -16px; margin-left: 6px;">';
     if (is_object($var)) {
-        echo get_class($var);
+        echo get_class($var) . ' ';
     } else {
-        echo gettype($var);
+        echo gettype($var) . ' ';
     }
-    echo '</pre>';
+
+    if (PHP_SAPI !== 'cli') {
+        echo '</pre>';
+    }
 
     $dumper->dump($cloner->cloneVar($var));
 });

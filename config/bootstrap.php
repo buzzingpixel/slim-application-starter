@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use DI\ContainerBuilder;
 use Psr\Container\ContainerInterface;
+use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run as WhoopsRun;
 
@@ -11,7 +12,11 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 if (class_exists(WhoopsRun::class)) {
     $whoops = new WhoopsRun();
-    $whoops->prependHandler(new PrettyPageHandler());
+    $whoops->prependHandler(
+        mb_strtolower(PHP_SAPI) === 'cli' ?
+            new PlainTextHandler() :
+            new PrettyPageHandler()
+    );
     $whoops->register();
 }
 

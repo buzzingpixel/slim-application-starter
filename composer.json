@@ -14,7 +14,8 @@
         "php": "^7.3",
         "php-di/php-di": "^6.0",
         "slim/psr7": "^0.6.0",
-        "slim/slim": "^4.3"
+        "slim/slim": "^4.3",
+        "symfony/console": "^4.3"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.26.2",
