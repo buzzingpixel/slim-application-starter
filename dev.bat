@@ -12,6 +12,7 @@ if "%cmd%" == "" (
     echo The following commands are available:
     echo   .\dev up
     echo   .\dev down
+    echo   .\dev cli [args]
     echo   .\dev composer [args]
     echo   .\dev login [args]
 )
@@ -23,6 +24,11 @@ if "%cmd%" == "up" (
 
 if "%cmd%" == "down" (
     docker-compose -f docker-compose.yml -p buzzingpixel down
+    exit /b 0
+)
+
+if "%cmd%" == "cli" (
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "php cli %allArgsExceptFirst%"
     exit /b 0
 )
 
