@@ -1,0 +1,44 @@
+{
+    "name": "buzzingpixel/buzzingpixel.com",
+    "description": "The BuzzingPixel.com website",
+    "license": "proprietary",
+    "homepage": "https://www.buzzingpixel.com",
+    "authors": [
+        {
+            "name": "TJ Draper",
+            "email": "tj@buzzingpixel.com",
+            "homepage": "https://buzzingpixel.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "php-di/php-di": "^6.0",
+        "slim/psr7": "^0.6.0",
+        "slim/slim": "^4.3"
+    },
+    "require-dev": {
+        "codedungeon/phpunit-result-printer": "^0.26.2",
+        "doctrine/coding-standard": "^6.0",
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "phpmd/phpmd": "^2.6",
+        "phpstan/phpstan": "^0.11.5",
+        "phpstan/phpstan-deprecation-rules": "^0.11.0",
+        "phpunit/phpunit": "^8.1",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "bin-compat": "full",
+        "sort-packages": true
+    }
+}
