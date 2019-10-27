@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Home;
 
-use function var_dump;
+use function dd;
 
 class GetHomeAction
 {
     public function __invoke() : void
     {
-        var_dump('here');
-        die;
+        // TODO: Implement Home Page
+        dd('Implement Home Page');
     }
 }

@@ -15,6 +15,10 @@ if (class_exists(WhoopsRun::class)) {
     $whoops->register();
 }
 
+if (class_exists(Symfony\Component\VarDumper\VarDumper::class)) {
+    require __DIR__ . '/dumper.php';
+}
+
 return static function () : ContainerInterface {
     $containerBuilder = (new ContainerBuilder())
         ->useAnnotations(true)
