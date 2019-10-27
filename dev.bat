@@ -27,12 +27,12 @@ if "%cmd%" == "down" (
 )
 
 if "%cmd%" == "composer" (
-    docker exec -it --user root --workdir /app buzzingpixel-php bash -c "%allArgs%"
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "%allArgs%"
     exit /b 0
 )
 
 if "%cmd%" == "login" (
-    docker exec -it --user root --workdir /app buzzingpixel-%secondArg% bash
+    docker exec -it --user root --workdir /opt/project buzzingpixel-%secondArg% bash
     exit /b 0
 )
 

@@ -49,12 +49,12 @@ if [[ "${cmd}" = "down" ]]; then
 fi
 
 if [[ "${cmd}" = "composer" ]]; then
-    docker exec -it --user root --workdir /app buzzingpixel-php bash -c "${allArgs}";
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "${allArgs}";
     exit 0;
 fi
 
 if [[ "${cmd}" = "login" ]]; then
-    docker exec -it --user root --workdir /app buzzingpixel-${secondArg} bash;
+    docker exec -it --user root --workdir /opt/project buzzingpixel-${secondArg} bash;
     exit 0;
 fi
 
