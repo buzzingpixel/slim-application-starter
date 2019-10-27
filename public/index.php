@@ -2,19 +2,17 @@
 
 declare(strict_types=1);
 
+use App\Http\Error\HttpErrorAction;
+use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
 use Slim\ResponseEmitter;
-use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run as WhoopsRun;
 
-require dirname(__DIR__) . '/config/bootstrap.php';
+$bootstrap = require dirname(__DIR__) . '/config/bootstrap.php';
 
-if (class_exists(WhoopsRun::class)) {
-    $whoops = new WhoopsRun();
-    $whoops->prependHandler(new PrettyPageHandler());
-    $whoops->register();
-}
+/** @var ContainerInterface $container */
+$container = $bootstrap();
 
 AppFactory::setContainer($container);
 $app = AppFactory::create();
@@ -26,7 +24,10 @@ $routes($app);
 
 $request = ServerRequestCreatorFactory::create()->createServerRequestFromGlobals();
 
-// TODO: Handle errors and 404s
+if (! class_exists(WhoopsRun::class) || false) { // <-- Temporarily set false to true for error page dev
+    $errorMiddleware = $app->addErrorMiddleware(false, false, false);
+    $errorMiddleware->setDefaultErrorHandler($app->getContainer()->get(HttpErrorAction::class));
+}
 
-$responseEmitter = new ResponseEmitter();
+$responseEmitter = $container->get(ResponseEmitter::class);
 $responseEmitter->emit($app->handle($request));
