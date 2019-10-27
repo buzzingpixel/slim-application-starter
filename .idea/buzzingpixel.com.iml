@@ -14,10 +14,13 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fig/http-message-util" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/filp/whoops" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofphp/php-cs-fixer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/hassankhan/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jean85/pretty-package-versions" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jeremeamia/superclosure" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/middlewares/utils" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/middlewares/whoops" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nette/bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nette/di" />

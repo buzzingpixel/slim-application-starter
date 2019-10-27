@@ -111,6 +111,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/vendor/middlewares/utils" />
+      <path value="$PROJECT_DIR$/vendor/middlewares/whoops" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

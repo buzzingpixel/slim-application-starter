@@ -5,19 +5,28 @@ declare(strict_types=1);
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
 use Slim\ResponseEmitter;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run as WhoopsRun;
 
 require dirname(__DIR__) . '/config/bootstrap.php';
 
+if (class_exists(WhoopsRun::class)) {
+    $whoops = new WhoopsRun();
+    $whoops->prependHandler(new PrettyPageHandler());
+    $whoops->register();
+}
+
 AppFactory::setContainer($container);
-$app              = AppFactory::create();
+$app = AppFactory::create();
+
 $callableResolver = $app->getCallableResolver();
 
 $routes = require dirname(__DIR__) . '/config/routes.php';
 $routes($app);
 
-$serverRequestCreator = ServerRequestCreatorFactory::create();
-$request              = $serverRequestCreator->createServerRequestFromGlobals();
+$request = ServerRequestCreatorFactory::create()->createServerRequestFromGlobals();
 
-$response        = $app->handle($request);
+// TODO: Handle errors and 404s
+
 $responseEmitter = new ResponseEmitter();
-$responseEmitter->emit($response);
+$responseEmitter->emit($app->handle($request));
