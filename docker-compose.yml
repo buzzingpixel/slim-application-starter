@@ -13,7 +13,7 @@ services:
     ports:
       - 26087:443
     volumes:
-      - .:/app:delegated
+      - .:/opt/project:delegated
       - ./docker/web/nginx.conf:/etc/nginx/conf.d/nginx.conf
     networks:
       common-buzzingpixel-network:
@@ -27,7 +27,7 @@ services:
       HOSTNAME: buzzingpixel-php
       COMPOSER_HOME: /composer-home-volume
     volumes:
-      - .:/app:delegated
+      - .:/opt/project:delegated
       - composer-home-volume:/composer-home-volume:delegated
     networks:
       common-buzzingpixel-network:

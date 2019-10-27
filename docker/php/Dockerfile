@@ -12,6 +12,8 @@ RUN set -ex; \
         libmagickwand-dev \
         libssl-dev \
         libwebp-dev \
+        libxml2 \
+        libxml2-dev \
         libxpm-dev \
         libzip-dev \
         openssl \
@@ -36,6 +38,7 @@ RUN set -ex; \
         mbstring \
         opcache \
         pdo_mysql \
+        xmlrpc \
         zip \
     ; \
     pecl install \
