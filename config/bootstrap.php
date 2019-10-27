@@ -28,11 +28,12 @@ return static function () : ContainerInterface {
     $containerBuilder = (new ContainerBuilder())
         ->useAnnotations(true)
         ->useAutowiring(true)
+        ->ignorePhpDocErrors(true)
         ->addDefinitions(require __DIR__ . '/dependencies.php');
 
-    // TODO: Should be set to true in production
-    if (false) {
-        $containerBuilder->enableCompilation(__DIR__ . '/../var/cache'); // TODO: <-- set this directory properly
+    if (getenv('ENABLE_DI_COMPILATION') === 'true') {
+        $containerBuilder->enableCompilation(dirname(__DIR__) . '/storage/di-cache');
+        $containerBuilder->writeProxiesToFile(true, dirname(__DIR__) . '/storage/di-cache');
     }
 
     /** @noinspection PhpUnhandledExceptionInspection */

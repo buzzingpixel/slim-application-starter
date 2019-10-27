@@ -36,6 +36,9 @@ if [[ -z "${cmd}" ]]; then
     printf "  ./dev down\n";
     printf "  ./dev cli [args]\n";
     printf "  ./dev composer [args]\n";
+    printf "  ./dev psalm\n";
+    printf "  ./dev phpstan\n";
+    printf "  ./dev phpunit [args]\n";
     printf "  ./dev login [args]${Reset}\n";
 fi
 
@@ -56,6 +59,21 @@ fi
 
 if [[ "${cmd}" = "composer" ]]; then
     docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "${allArgs}";
+    exit 0;
+fi
+
+if [[ "${cmd}" = "psalm" ]]; then
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "chmod +x /app/vendor/bin/psalm && /app/vendor/bin/psalm";
+    exit 0;
+fi
+
+if [[ "${cmd}" = "phpstan" ]]; then
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "chmod +x /app/vendor/bin/phpstan && /app/vendor/bin/phpstan analyse config public/index.php src tests cli";
+    exit 0;
+fi
+
+if [[ "${cmd}" = "phpunit" ]]; then
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "chmod +x /app/vendor/bin/phpunit && /app/vendor/bin/phpunit --configuration /app/phpunit.xml ${allArgsExceptFirst}";
     exit 0;
 fi
 

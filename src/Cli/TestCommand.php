@@ -20,8 +20,11 @@ class TestCommand extends Command
         $this->setHelp('The test command help description');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) : void
+    protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         $output->writeln('<fg=green>Test Command Output</>');
+
+        // Command should return 1 if things didn't go fine
+        return 0;
     }
 }

@@ -14,6 +14,8 @@ if "%cmd%" == "" (
     echo   .\dev down
     echo   .\dev cli [args]
     echo   .\dev composer [args]
+    echo   .\dev phpstan
+    echo   .\dev phpunit [args]
     echo   .\dev login [args]
 )
 
@@ -34,6 +36,21 @@ if "%cmd%" == "cli" (
 
 if "%cmd%" == "composer" (
     docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "%allArgs%"
+    exit /b 0
+)
+
+if "%cmd%" == "psalm" (
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "chmod +x /opt/project/vendor/bin/psalm && /opt/project/vendor/bin/psalm"
+    exit /b 0
+)
+
+if "%cmd%" == "phpstan" (
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "chmod +x /opt/project/vendor/bin/phpstan && /opt/project/vendor/bin/phpstan analyse config public/index.php src tests cli"
+    exit /b 0
+)
+
+if "%cmd%" == "phpunit" (
+    docker exec -it --user root --workdir /opt/project buzzingpixel-php bash -c "chmod +x /opt/project/vendor/bin/phpunit && /opt/project/vendor/bin/phpunit --configuration /opt/project/phpunit.xml %allArgsExceptFirst%"
     exit /b 0
 )
 

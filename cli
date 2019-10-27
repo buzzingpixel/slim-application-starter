@@ -15,7 +15,7 @@ $container = $bootstrap();
 $app = $container->get(Application::class);
 
 // Use Whoops to catch the exception
-if (class_exists(WhoopsRun::class) && true) {
+if (class_exists(WhoopsRun::class)) {
     $app->setCatchExceptions(false);
 }
 

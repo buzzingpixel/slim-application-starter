@@ -24,9 +24,9 @@ $routes($app);
 
 $request = ServerRequestCreatorFactory::create()->createServerRequestFromGlobals();
 
-if (! class_exists(WhoopsRun::class) || false) { // <-- Temporarily set false to true for error page dev
+if (! class_exists(WhoopsRun::class)) {
     $errorMiddleware = $app->addErrorMiddleware(false, false, false);
-    $errorMiddleware->setDefaultErrorHandler($app->getContainer()->get(HttpErrorAction::class));
+    $errorMiddleware->setDefaultErrorHandler($container->get(HttpErrorAction::class));
 }
 
 $responseEmitter = $container->get(ResponseEmitter::class);
