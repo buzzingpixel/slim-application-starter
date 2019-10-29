@@ -45,6 +45,7 @@ VarDumper::setHandler(static function ($var) use ($cloner, $dumper, $twigDumper,
     $isTwigDumper = $checkForTwigDumperArray[count($checkForTwigDumperArray) -1] === 'TwigDumper.php';
 
     if ($isTwigDumper) {
+        echo '<div></div>';
         echo '<div style="background-color: #fff; display: inline-block; margin: 10px; padding: 25px;">';
         echo '<pre style="font-size: 14px; margin-bottom: -10px; margin-left: 6px;">';
         if (is_object($var)) {
