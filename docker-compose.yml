@@ -1,6 +1,17 @@
 version: '3.7'
 
 services:
+  utility:
+    image: buzzingpixel/utility:1.1.0
+    container_name: buzzingpixel-utility
+    environment:
+      HOSTNAME: buzzingpixel-utility
+    volumes:
+      - .:/var/www:delegated
+      - node-modules-volume:/node-modules-volume
+    command: bash -c "chmod +x /var/www/scripts/dev/devUtilityScript.sh && /var/www/scripts/dev/devUtilityScript.sh"
+    networks:
+      common-buzzingpixel-network:
   web:
     build:
       context: ./docker/web
@@ -48,6 +59,8 @@ services:
 volumes:
   composer-home-volume:
   db-volume:
+  node-modules-volume:
+  yarn-cache-volume:
 
 networks:
   common-buzzingpixel-network:

@@ -43,14 +43,7 @@ RUN set -ex; \
     ; \
     pecl install \
         imagick \
-        xdebug-2.7.2 \
     ; \
     docker-php-ext-enable \
         imagick \
-        xdebug \
     ;
-
-# Install composer and put binary into $PATH
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/ \
-    && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
